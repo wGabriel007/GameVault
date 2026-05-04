@@ -51,7 +51,7 @@ namespace Biblioteca_de_Jogos.Controllers
                 SolicitanteNome = solicitante,
                 DonoNome        = jogo.Dono,
                 Status          = StatusSolicitacao.Pendente,
-                DataSolicitacao = DateTime.Now
+                DataSolicitacao = DateTime.UtcNow
             };
 
             _context.Solicitacoes.Add(solicitacao);

@@ -24,7 +24,7 @@ namespace Biblioteca_de_Jogos.Models
 
         public StatusSolicitacao Status { get; set; } = StatusSolicitacao.Pendente;
 
-        public DateTime DataSolicitacao { get; set; } = DateTime.Now;
+        public DateTime DataSolicitacao { get; set; } = DateTime.UtcNow;
 
         public bool Visualizada { get; set; } = false;
     }
