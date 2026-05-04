@@ -129,7 +129,7 @@ namespace Biblioteca_de_Jogos.Controllers
             {
                 Email     = model.Email,
                 Codigo    = codigo,
-                Expiracao = DateTime.Now.AddMinutes(15)
+                Expiracao = DateTime.UtcNow.AddMinutes(15)
             });
             await _context.SaveChangesAsync();
 
@@ -164,7 +164,7 @@ namespace Biblioteca_de_Jogos.Controllers
                 .Where(c => c.Email  == model.Email  &&
                             c.Codigo == model.Codigo &&
                             !c.Usado &&
-                            c.Expiracao > DateTime.Now)
+                            c.Expiracao > DateTime.UtcNow)
                 .FirstOrDefaultAsync();
 
             if (registro == null)
@@ -195,7 +195,7 @@ namespace Biblioteca_de_Jogos.Controllers
                 .FirstOrDefaultAsync(c => c.Email  == model.Email  &&
                                           c.Codigo == model.Codigo &&
                                           !c.Usado &&
-                                          c.Expiracao > DateTime.Now);
+                                          c.Expiracao > DateTime.UtcNow);
             if (registro == null)
             {
                 ModelState.AddModelError("", "Sessão expirada. Solicite um novo código.");
