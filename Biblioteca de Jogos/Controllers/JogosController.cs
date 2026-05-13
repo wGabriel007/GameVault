@@ -53,6 +53,9 @@ namespace Biblioteca_de_Jogos.Controllers
 
             ViewBag.Avaliacoes = await _context.Avaliacoes.ToListAsync();
 
+            ViewBag.TotalMeusJogos = jogos.Count(j => j.txt_Dono == nomeUsuario);
+            ViewBag.TotalComunidade = jogos.Count(j => j.txt_Dono != nomeUsuario);
+
             return View(jogos);
         }
 

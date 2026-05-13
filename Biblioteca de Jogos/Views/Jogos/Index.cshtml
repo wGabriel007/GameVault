@@ -5,6 +5,8 @@
     var isAdmin = Context.Session.GetString("IsAdmin") == "True";
     var totalPendentes = ViewBag.TotalPendentes as int? ?? 0;
     var totalRespostas = ViewBag.TotalRespostas as int? ?? 0;
+    var totalMeusJogos = ViewBag.TotalMeusJogos as int? ?? 0;
+    var totalComunidade = ViewBag.TotalComunidade as int? ?? 0;
 }
 
 <div class="container mt-4">
@@ -101,14 +103,14 @@
 
     <ul class="nav nav-tabs mb-4" id="abas">
         <li class="nav-item">
-            <button class="nav-link active" style="color: black" id="btn-meus" onclick="trocarAba('meus')"> Meus Jogos</button>
+            <button class="nav-link active" style="color: black" id="btn-meus" onclick="trocarAba('meus')"> Meus Jogos (@totalMeusJogos)</button>
         </li>
         <li class="nav-item">
-            <button class="nav-link" style="color: black" id="btn-comunidade" onclick="trocarAba('comunidade')"> Comunidade</button>
+            <button class="nav-link" style="color: black" id="btn-comunidade" onclick="trocarAba('comunidade')"> Comunidade (@totalComunidade)</button>
         </li>
-        <li class="nav-item">
+        @* <li class="nav-item">
             <button class="nav-link" style="color: black" id="btn-perifericos" onclick="trocarAba('prefireficos')"> Perifericos</button>
-        </li>
+        </li> *@
     </ul>
 
     <div id="semResultados" class="alert alert-info d-none">
