@@ -57,11 +57,11 @@
     <div class="card mb-4 shadow-sm">
         <div class="card-body">
             <div class="row g-2">
-                <div class="col-md-4">
+                <div class="col">
                     <input id="filtroNome" type="text" class="form-control"
                            placeholder="Buscar por nome..." oninput="filtrar()" />
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <select id="filtroConsole" class="form-select" onchange="filtrar()">
                         <option value="">Todos os consoles</option>
                         @foreach (var console in Model.Select(j => j.txt_Console).Distinct().OrderBy(c => c))
@@ -70,7 +70,16 @@
                         }
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
+                    <select id="filtroUsuario" class="form-select" onchange="filtrar()">
+                        <option value="">Todos os usuário</option>
+                        @foreach (var usuario in Model.Select(u => u.txt_Dono).Distinct().OrderBy(g => g))
+                        {
+                            <option value="@usuario">@usuario</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
                     <select id="filtroGenero" class="form-select" onchange="filtrar()">
                         <option value="">Todos os gêneros</option>
                         @foreach (var genero in Model.Select(j => j.txt_Genero).Distinct().OrderBy(g => g))
@@ -79,7 +88,7 @@
                         }
                     </select>
                 </div>
-                <div class="col-md-2">
+                <div class="col">
                     <select id="filtroDisponivel" class="form-select" onchange="filtrar()">
                         <option value=""> Todos</option>
                         <option value="disponivel">Disponíveis</option>
@@ -118,6 +127,7 @@
                  data-nome="@jogo.txt_Nome.ToLower()"
                  data-console="@jogo.txt_Console"
                  data-genero="@jogo.txt_Genero"
+                 data-usuario="@jogo.txt_Dono"
                  data-disponivel="@(jogo.bool_EstaEmprestado ? "emprestado" : "disponivel")">
                 <div class="card h-100 shadow-sm">
                     @if (!string.IsNullOrEmpty(jogo.txt_FotoUrl))
@@ -223,6 +233,7 @@
             const console    = document.getElementById('filtroConsole').value;
             const genero     = document.getElementById('filtroGenero').value;
             const disponivel = document.getElementById('filtroDisponivel').value;
+            const usuario = document.getElementById('filtroUsuario').value;
 
             const cards = document.querySelectorAll('.jogo-card');
             let visiveis = 0;
@@ -233,8 +244,9 @@
                 const consoleMatch    = !console    || card.dataset.console    === console;
                 const generoMatch     = !genero     || card.dataset.genero     === genero;
                 const disponivelMatch = !disponivel || card.dataset.disponivel === disponivel;
+                const usuarioMatch    = !usuario    || card.dataset.usuario    === usuario;
 
-                const visivel = abaMatch && nomeMatch && consoleMatch && generoMatch && disponivelMatch;
+                const visivel = abaMatch && nomeMatch && consoleMatch && generoMatch && disponivelMatch && usuarioMatch;
                 card.style.display = visivel ? '' : 'none';
                 if (visivel) visiveis++;
             });
