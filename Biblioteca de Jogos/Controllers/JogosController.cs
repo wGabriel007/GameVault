@@ -83,6 +83,18 @@ namespace Biblioteca_de_Jogos.Controllers
             return View(jogosOutros);
         }
 
+        public async Task<IActionResult> Perifericos()
+        {
+            var nomeUsuario = HttpContext.Session.GetString("UsuarioNome");
+            if (nomeUsuario == null) return RedirectToAction("Loguin", "Home");
+
+            var perifericos = await _context.Jogos
+                .Where(p => p.txt_Dono != nomeUsuario)
+                .ToListAsync();
+
+            return View(perifericos);
+        }
+
         private async Task CarregarConsoles(string? consoleSelecionado = null)
         {
             var consoles = await _context.Consoles
@@ -113,6 +125,7 @@ namespace Biblioteca_de_Jogos.Controllers
             if (ModelState.IsValid)
             {
                 jogo.txt_Dono = UsuarioLogado()!;
+                jogo.dt_AdicionadoEm = DateTime.UtcNow;
                 _context.Jogos.Add(jogo);
                 await _context.SaveChangesAsync();
                 TempData["SuccessMessage"] = "Jogo adicionado com sucesso!";

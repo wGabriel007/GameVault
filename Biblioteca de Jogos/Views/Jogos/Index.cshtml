@@ -143,6 +143,9 @@
                         <p class="card-text text-muted mb-1">🎮 @jogo.txt_Console</p>
                         <p class="card-text text-muted mb-1">⏱️ @jogo.int_HorasParaZerar horas para zerar</p>
                         <p class="card-text mb-1">👤 Dono: <strong>@jogo.txt_Dono</strong></p>
+                        <p class="card-text text-muted mb-1" style="font-size: 0.8rem;">
+                            📅 Adicionado em: <strong>@jogo.dt_AdicionadoEm.ToString("dd/MM/yyyy")</strong>
+                        </p>
 
                         @if (jogo.bool_EstaEmprestado)
                         {
@@ -231,7 +234,7 @@
                         }
                         else
                         {
-                            <span class="text-muted small align-self-center">🔒 Indisponível</span>
+                            <span class="text-muted small align-self-center">Indisponível</span>
                         }
                     </div>
                 </div>

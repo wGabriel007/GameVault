@@ -43,5 +43,8 @@ namespace Biblioteca_de_Jogos.Models
         public string txt_Dono { get; set; } = string.Empty;
         [Column("Disponivel")]
         public bool bool_Disponivel { get; set; } = true;
+
+        [Column("AdicionadoEm")]
+        public DateTime dt_AdicionadoEm {  get; set; } = DateTime.UtcNow;
     }
 }
